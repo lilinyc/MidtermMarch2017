@@ -19,9 +19,7 @@ public class Numbers {
 		
 		Random rand = new Random();
 		for(int i=0; i<num.length; i++){
-			
-		num[i] = rand.nextInt(1000000);
-			
+			num[i] = rand.nextInt(1000000);
 		}
 
 		//Selection Sort
