@@ -8,9 +8,8 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class Pattern {
-
-    static List<Object> generatePattern(int startingNumber) {
-        List<Object> result = new LinkedList<Object>();
+    static List<Integer> generatePattern(int startingNumber) {
+        List<Integer> result = new LinkedList<Integer>();
         result.add(startingNumber);
         int currentNumber = startingNumber;
         int currentCounter = 1;
@@ -33,9 +32,9 @@ public class Pattern {
 		 *
 		 */
 
-        List<Object> result = generatePattern(100);
+        List<Integer> result = generatePattern(100);
 
-        ConnectDB connectDB = new ConnectDB();
+        ConnectDB connectDB = new ConnectDB<Integer>();
 
         List<String> valuesFromDatabase = new ArrayList<String>();
         try {

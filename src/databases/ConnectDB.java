@@ -21,7 +21,7 @@ import java.util.*;
  * Created by mrahman on 04/22/17.
  */
 
-public class ConnectDB {
+public class ConnectDB<T> {
 
     public static MongoDatabase mongoDatabase = null;
 
