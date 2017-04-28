@@ -151,12 +151,15 @@ public class ConnectDB<T> {
     public void InsertDataFromArrayListToMySql(List<Object> list, String tableName, String columnName) {
         try {
             connectToMySql();
+            //we need to use transactions when we are executing large number of commands
+            //so that it writes to disk ones instead of for each command
+            connect.setAutoCommit(false);
             for (Object st : list) {
                 ps = connect.prepareStatement("INSERT INTO " + tableName + " ( " + columnName + " ) VALUES(?)");
                 ps.setObject(1, st);
                 ps.executeUpdate();
             }
-
+            connect.commit();
         } catch (IOException e) {
             e.printStackTrace();
         } catch (SQLException e) {
