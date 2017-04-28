@@ -11,6 +11,7 @@ public class UseLinkedList {
 		 * 
 		 */
 
+
         LinkedList<Integer> myList = new LinkedList<Integer>();
         myList.add(5);
         myList.add(4);
@@ -20,7 +21,6 @@ public class UseLinkedList {
         for (Integer number : myList) {
             sum += number;
         }
-
         System.out.println("My List sum:" + sum);
 
         System.out.println("First:" + myList.peek());
