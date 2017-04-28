@@ -18,6 +18,7 @@ public class LowestNumber {
 
 		List<String> lowestValues = new ArrayList<String>();
 		try {
+			connectDB.deleteDataFromTable("tbl_lowestNumber");
 			connectDB.InsertDataFromArryToMySql(array, "tbl_lowestNumber", "column_lowestNumber");
 			lowestValues = connectDB.readDataBase("tbl_lowestNumber", "column_lowestNumber");
 
