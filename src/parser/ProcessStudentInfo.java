@@ -4,7 +4,10 @@ import org.xml.sax.SAXException;
 
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 public class ProcessStudentInfo {
 
@@ -36,26 +39,49 @@ public class ProcessStudentInfo {
 				String tag = "id";
 
 				//Declare a Map with List<String> into it.
-				
+				Map<String, List<String>> results = new HashMap<String, List<String>>();
 				
 				/*Declare 2 ArrayList with Student data type to store Selenium student into one of the ArrayList and
 				  Qtp student into another ArrayList. */
-				
-				
-				
+
 				//Create XMLReader object.
+				XmlReader xmlReader = new XmlReader();
 				
 				//Parse Data using parseData method and then store data into Selenium ArrayList.
+				List<Student> gradeSelenium = xmlReader.parseData(tag, pathSelenium);
 
 				//Parse Data using parseData method and then store data into Qtp ArrayList.
-				
-				//add Selenium ArrayList data into map.
-			
-				//add Qtp ArrayList data into map.
-		
-		      	
-				//Retrieve map data and display output.
+				List<Student> gradeQtp = xmlReader.parseData(tag, pathQtp);
 
+				//add Selenium ArrayList data into map.
+				for (Student student: gradeSelenium) {
+					if (results.containsKey(student.grade)){
+						results.get(student.grade).add(student.toString());
+					} else {
+						List<String> studentResults = new LinkedList<String>(){};
+						studentResults.add(student.toString());
+						results.put(student.grade, studentResults);
+					}
+				}
+
+				//add Qtp ArrayList data into map.
+				for (Student student: gradeQtp) {
+					if (results.containsKey(student.grade)){
+						results.get(student.grade).add(student.toString());
+					} else {
+						List<String> studentResults = new LinkedList<String>(){};
+						studentResults.add(student.toString());
+						results.put(student.grade, studentResults);
+					}
+				}
+
+				System.out.println("Student Details");
+				//Retrieve map data and display output.
+				for (String key:results.keySet()) {
+					for (String student: results.get(key)) {
+						System.out.println(student);
+					}
+				}
 				
 			}
 
